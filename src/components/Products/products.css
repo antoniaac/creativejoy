@@ -1,0 +1,32 @@
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.prodImg {
+  width: 260px;
+  height: 340px;
+  border-radius: 5px;
+  text-align: center;
+}
+.product-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 3px 1px 14px 0px lightgrey;
+  border-radius: 10px;
+}
+
+.product-description {
+  text-align: center;
+}
+.product-description a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.product-description a:hover {
+  color: black;
+}
+.product-price {
+  font-weight: 450;
+}
