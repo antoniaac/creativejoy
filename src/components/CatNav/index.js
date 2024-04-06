@@ -1,21 +1,20 @@
+import categorySlice from "../store/slices/categories";
 import "./catNav.css";
+import { useSelector } from "react-redux";
 
 const CatNav = () => {
+  const categorii = useSelector(categorySlice.getInitialState);
+
   return (
     <div className="cat-nav-container">
       <ul className="list">
-        <li className="items">
-          <a href="#">Bridal</a>
-        </li>
-        <li className="items">
-          <a href="#">Cadouri Personalizate</a>
-        </li>
-        <li className="items">
-          <a href="#">Craciun</a>
-        </li>
-        <li className="items">
-          <a href="#">Despre</a>
-        </li>
+        {categorii.map((categ) => {
+          return (
+            <li className="items">
+              <a href="#"> {categ} </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
