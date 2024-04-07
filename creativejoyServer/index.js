@@ -12,11 +12,23 @@ const pool = mysql2.createPool({
 });
 
 app.get("/", (req, res) => {
+  let categorydata;
   pool.getConnection((err, connection) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).send("Connection established");
+      pool.query(
+        "Select * from productCategories",
+        (error, productCategories) => {
+          if (error) {
+            categorydata = error;
+            res.status(500).send(error);
+          } else {
+            categorydata = productCategories;
+            res.status(200).send(categorydata);
+          }
+        }
+      );
     }
   });
 });
