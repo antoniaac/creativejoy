@@ -1,9 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getCategories } from "./actions";
 
-const initialState = ["Bridal", "Cadouri Personalizate", "Craciun", "Despre"];
+const initialState = {
+  categories: [],
+  status: "idle",
+  error: "",
+};
 const categorySlice = createSlice({
-  name: "Category",
-  initialState: initialState,
+  name: "category",
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(getCategories.pending, (state, action) => {
+        state.status = "Loading...";
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.status = "Success";
+        state.categories = action.payload;
+        // state.categories = state.categories.concat(action.payload);
+      })
+      .addCase(getCategories.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
 });
 
-export default categorySlice;
+export default categorySlice.reducer;
